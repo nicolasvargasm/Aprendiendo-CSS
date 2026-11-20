@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aprendiendo CSS con Bootstrap</title>
+
+  <!-- Fuente y Bootstrap (CDN) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- CSS INTERNO -->
+  <style>
+    .banda-interna { background: #fff3cd; border: 2px dashed #f2a900; padding: 1rem; border-radius: .5rem; }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#indice" data-bs-offset="100" tabindex="0">
+
+<nav class="navbar navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#inicio">CSS paso a paso</a>
+    <button class="navbar-toggler d-lg-none" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-lg-none" id="menu">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#t21">Sintaxis</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t22">Incorporación</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t23">Herencia</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t24">Especificidad</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t25">Flexbox</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t26">Media queries</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t27">Pseudo elementos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t28">Pseudo clases</a></li>
+        <li class="nav-item"><a class="nav-link" href="#t29">z-index</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="portada" id="inicio">
+  <div class="container-xl">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <h1 class="display-3">Aprendiendo CSS</h1>
+        <p class="lead">Nueve temas, cada uno con un componente de Bootstrap y un ejemplo para probar. Abre <code>css/estilos.css</code> y cambia valores para ver qué pasa.</p>
+        <a href="#t21" class="btn btn-warning btn-lg">Empezar por 2.1</a>
+      </div>
+      <div class="col-lg-5">
+        <div class="ventana">
+          <div class="ventana-barra"><i></i><i></i><i></i></div>
+<pre><span class="k">.tarjeta</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">gap</span>: <span class="v">1rem</span>;
+  <span class="p">color</span>: <span class="v">teal</span>;
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container-xl mt-4">
+<div class="row">
+  <aside class="col-lg-3 d-none d-lg-block">
+    <nav class="indice nav flex-column" id="indice"><a class="nav-link" href="#t21">Sintaxis</a><a class="nav-link" href="#t22">Incorporación</a><a class="nav-link" href="#t23">Herencia</a><a class="nav-link" href="#t24">Especificidad</a><a class="nav-link" href="#t25">Flexbox</a><a class="nav-link" href="#t26">Media queries</a><a class="nav-link" href="#t27">Pseudo elementos</a><a class="nav-link" href="#t28">Pseudo clases</a><a class="nav-link" href="#t29">z-index</a></nav>
+  </aside>
+  <main class="col-lg-9">
+
+  <!-- 2.1 -->
+  <section class="tema" id="t21">
+    <header class="tema-cab"><span class="num">2.1</span><h2>Estructura y sintaxis</h2></header>
+    <p class="lead">Una regla CSS tiene un selector y un bloque con declaraciones <em>propiedad: valor;</em></p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card h-100"><div class="card-body">
+          <h5 class="card-title">Anatomía de una regla</h5>
+<pre class="codigo mb-0">selector {
+  propiedad: valor;
+  color: teal;
+}</pre>
+        </div></div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100"><div class="card-body">
+          <h5 class="card-title">Selectores comunes</h5>
+          <p class="card-text mb-1"><code>p</code> etiqueta, <code>.clase</code> clase, <code>#id</code> identificador.</p>
+          <p class="card-text">Varios selectores se separan con coma: <code>h1, h2 { }</code></p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.2 -->
+  <section class="tema" id="t22">
+    <header class="tema-cab"><span class="num">2.2</span><h2>Tipos de incorporación</h2></header>
+    <p class="lead">Hay tres formas de aplicar CSS. Esta página usa las tres.</p>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#p-ext">Externo</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#p-int">Interno</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#p-lin">En línea</button></li>
+    </ul>
+    <div class="tab-content border border-top-0 bg-white p-3">
+      <div class="tab-pane fade show active" id="p-ext">
+<pre class="codigo">&lt;link rel="stylesheet" href="css/estilos.css"&gt;</pre>
+        <p class="mb-0">Un archivo aparte. Es lo más ordenado y se reutiliza en varias páginas.</p>
+      </div>
+      <div class="tab-pane fade" id="p-int">
+<pre class="codigo">&lt;style&gt;
+  .banda-interna { background: #fff3cd; }
+&lt;/style&gt;</pre>
+        <div class="banda-interna">Esta caja usa CSS interno, escrito dentro del &lt;head&gt;.</div>
+      </div>
+      <div class="tab-pane fade" id="p-lin">
+<pre class="codigo">&lt;p style="color: crimson;"&gt;Hola&lt;/p&gt;</pre>
+        <p style="color: crimson; font-weight: 600;" class="mb-0">Este texto usa CSS en línea, dentro de la propia etiqueta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.3 -->
+  <section class="tema" id="t23">
+    <header class="tema-cab"><span class="num">2.3</span><h2>Indentación, herencia y comentarios</h2></header>
+    <div class="accordion" id="acc23">
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#a1">Indentación</button></h3>
+        <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#acc23"><div class="accordion-body">
+          Los espacios no cambian el resultado, pero hacen el código legible. Una declaración por línea y dos espacios dentro del bloque.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a2">Herencia</button></h3>
+        <div id="a2" class="accordion-collapse collapse" data-bs-parent="#acc23"><div class="accordion-body">
+          Propiedades como <code>color</code> y <code>font-family</code> pasan del padre a los hijos. En esta página la fuente se define una sola vez en <code>body</code>.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#a3">Comentarios</button></h3>
+        <div id="a3" class="accordion-collapse collapse" data-bs-parent="#acc23"><div class="accordion-body">
+<pre class="codigo mb-0">/* Esto es un comentario en CSS */</pre>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.4 -->
+  <section class="tema" id="t24">
+    <header class="tema-cab"><span class="num">2.4</span><h2>Niveles de especificidad</h2></header>
+    <p class="lead">Si dos reglas chocan, gana la más específica: en línea &gt; id &gt; clase &gt; etiqueta.</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item">Etiqueta: <code>button</code> (0,0,0,1)</li>
+          <li class="list-group-item">Clase: <code>.zona-esp .prueba</code> (0,0,2,0)</li>
+          <li class="list-group-item">Id: <code>#boton-id</code> (1,0,0,0)</li>
+          <li class="list-group-item">En línea: <code>style=""</code> (1,0,0,0,0)</li>
+        </ul>
+      </div>
+      <div class="col-md-6 zona-esp"><div class="demo-panel">
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn prueba">Gris (etiqueta + clase)</button>
+          <button class="btn prueba">Azul (por clases)</button>
+          <button class="btn prueba" id="boton-id">Verde (por id)</button>
+          <button class="btn prueba" id="boton-lin" style="background: tomato;">Rojo (en línea)</button>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 2.5 -->
+  <section class="tema" id="t25">
+    <header class="tema-cab"><span class="num">2.5</span><h2>Flexbox, grid y breakpoints</h2></header>
+    <p class="lead">Bootstrap usa flexbox por debajo. Estas columnas cambian de cantidad según el ancho.</p>
+    <div class="demo-panel mb-3"><div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-3"><div class="caja">col-12<br>col-md-6<br>col-lg-3</div></div>
+      <div class="col-12 col-md-6 col-lg-3"><div class="caja">Dos</div></div>
+      <div class="col-12 col-md-6 col-lg-3"><div class="caja">Tres</div></div>
+      <div class="col-12 col-md-6 col-lg-3"><div class="caja">Cuatro</div></div>
+    </div></div>
+    <p class="mb-1">Flexbox directo con utilidades de Bootstrap:</p>
+    <div class="demo-panel mb-3">
+      <div class="d-flex justify-content-between align-items-center gap-2">
+        <div class="caja">A</div><div class="caja">B</div><div class="caja">C</div>
+      </div>
+    </div>
+<pre class="codigo mt-3">.contenedor { display: flex; justify-content: space-between; align-items: center; }</pre>
+  </section>
+
+  <!-- 2.6 -->
+  <section class="tema" id="t26">
+    <header class="tema-cab"><span class="num">2.6</span><h2>Media queries</h2></header>
+    <p class="lead">Reglas que se activan solo si se cumple una condición, como el ancho de pantalla.</p>
+    <div class="demo-panel mb-3"><div class="alert alert-info mb-0">
+      Ahora mismo estás en: <span class="indicador"></span>
+    </div></div>
+    <p>Cambia el tamaño de la ventana y observa el texto. Está hecho con esto:</p>
+<pre class="codigo">@media (min-width: 768px) {
+  .indicador::after { content: "Tablet"; }
+}</pre>
+  </section>
+
+  <!-- 2.7 -->
+  <section class="tema" id="t27">
+    <header class="tema-cab"><span class="num">2.7</span><h2>Pseudo elementos</h2></header>
+    <p class="lead">Se escriben con <code>::</code> y estilizan una parte del elemento o añaden contenido.</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card h-100"><div class="card-body">
+          <p class="nota">El texto "Nota:" lo agrega <code>::before</code>, no está en el HTML.</p>
+          <p class="cita mb-0">La primera letra de este párrafo es más grande gracias a ::first-letter. Selecciona el texto con el mouse para ver ::selection.</p>
+        </div></div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100"><div class="card-body">
+          <p>Pasa el mouse: <a href="#t27" class="enlace-sub">subrayado animado con ::after</a></p>
+<pre class="codigo mb-0">a::after { content: ""; width: 0; }
+a:hover::after { width: 100%; }</pre>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.8 -->
+  <section class="tema" id="t28">
+    <header class="tema-cab"><span class="num">2.8</span><h2>Pseudo clases</h2></header>
+    <p class="lead">Se escriben con <code>:</code> y dependen del estado o la posición del elemento.</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="demo-panel">
+          <ul class="list-group lista-pc">
+            <li class="list-group-item">:first-child (negrita)</li>
+            <li class="list-group-item">:nth-child(odd) (fondo azulado)</li>
+            <li class="list-group-item">:hover (pasa el mouse)</li>
+            <li class="list-group-item">:nth-child(odd) otra vez</li>
+            <li class="list-group-item">:last-child (cursiva)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="demo-panel">
+          <label class="form-label" for="correo">Correo (prueba :focus, :valid e :invalid)</label>
+          <input id="correo" type="email" required class="form-control campo" placeholder="nombre@correo.com">
+          <button class="btn btn-secondary mt-3" disabled>:disabled</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.9 -->
+  <section class="tema" id="t29">
+    <header class="tema-cab"><span class="num">2.9</span><h2>z-index</h2></header>
+    <p class="lead">Controla qué elemento queda encima. Solo funciona en elementos con <code>position</code> distinto de static.</p>
+    <div class="row g-3 align-items-center">
+      <div class="col-md-6"><div class="demo-panel">
+        <div class="pila">
+          <div class="capa c1">z-index: 1</div>
+          <div class="capa c2">z-index: 3</div>
+          <div class="capa c3">z-index: 2</div>
+        </div>
+      </div></div>
+      <div class="col-md-6">
+        <p>Bootstrap usa z-index en los modales para que queden sobre todo lo demás.</p>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalz">Abrir modal</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+</div>
+
+<div class="modal fade" id="modalz" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">Modal sobre la página</h5>
+      <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+    <div class="modal-body">Este modal tiene z-index: 1055, mayor que el de la barra de navegación (1020).</div>
+  </div></div>
+</div>
+
+<footer><div class="container-xl">Proyecto de práctica de CSS con Bootstrap 5.</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

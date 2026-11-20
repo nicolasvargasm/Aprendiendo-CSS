@@ -1,0 +1,132 @@
+/* ===== estilos.css (CSS EXTERNO) =====
+   Se enlaza desde el <head> con <link rel="stylesheet">. */
+
+/* Variables: se heredan en todo el documento desde :root */
+:root {
+  --tinta: #14213d;
+  --fondo: #eef2f7;
+  --acento: #0b7a75;
+  --ambar: #f2a900;
+  --coral: #e4572e;
+  --borde: #d5dce6;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Outfit", system-ui, sans-serif; /* herencia: la usan todos los hijos */
+  color: var(--tinta);
+  background: var(--fondo);
+}
+
+/* ---------- Portada ---------- */
+.portada {
+  color: #fff;
+  padding: 4.5rem 0 4rem;
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(135deg, #14213d 0%, #0d4f5c 100%);
+}
+.portada h1 { font-weight: 700; letter-spacing: -.03em; }
+.portada .lead { color: #c5d3e6; }
+.ventana {
+  background: #0b1224; border-radius: .75rem; overflow: hidden;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.35);
+}
+.ventana-barra { background: #1c2745; padding: .5rem .75rem; }
+.ventana-barra i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--coral); }
+.ventana-barra i:nth-child(2) { background: var(--ambar); }
+.ventana-barra i:nth-child(3) { background: #3fb68b; }
+.ventana pre { margin: 0; padding: 1rem 1.25rem; color: #dbe7f5; font-size: .95rem; }
+.k { color: #f2a900; } .p { color: #7fd6cf; } .v { color: #ff9a76; }
+
+/* ---------- Índice lateral ---------- */
+.indice { position: sticky; top: 1.5rem; }
+.indice .nav-link {
+  color: var(--tinta); border-left: 3px solid transparent;
+  border-radius: 0; padding: .4rem .9rem; font-size: .95rem;
+}
+.indice .nav-link:hover { background: #fff; }
+.indice .nav-link.active { border-left-color: var(--acento); background: #fff; font-weight: 600; }
+
+/* ---------- Temas ---------- */
+.tema {
+  background: #fff; border: 1px solid var(--borde);
+  border-radius: 1rem; padding: 1.75rem; margin-bottom: 1.5rem;
+  scroll-margin-top: 80px;
+}
+.tema-cab { display: flex; align-items: center; gap: .85rem; margin-bottom: .75rem; }
+.tema-cab h2 { font-size: 1.6rem; font-weight: 700; margin: 0; }
+.num {
+  background: var(--tinta); color: var(--ambar);
+  font-weight: 700; padding: .3rem .7rem; border-radius: .5rem;
+}
+.tema .lead { font-size: 1.05rem; max-width: 62ch; margin-bottom: 1.5rem; }
+
+.demo-panel {
+  background: var(--fondo); border: 2px dashed var(--borde);
+  border-radius: .75rem; padding: 1.25rem; height: 100%; position: relative;
+}
+.demo-panel::before {
+  content: "Prueba"; position: absolute; top: -.75rem; left: 1rem;
+  background: var(--acento); color: #fff; font-size: .8rem; font-weight: 600;
+  padding: .1rem .6rem; border-radius: 2rem;
+}
+
+pre.codigo {
+  background: #0f1830; color: #cfe8e6;
+  padding: 1rem; border-radius: .5rem; margin: 0;
+  font-size: .85rem; overflow-x: auto;
+}
+
+/* ---------- 2.4 Especificidad ---------- */
+button.prueba { background: gray; color: #fff; }       /* 0,0,1,1 */
+.zona-esp .prueba { background: steelblue; }           /* 0,0,2,0 */
+#boton-id, #boton-lin { background: seagreen; }        /* 1,0,0,0 */
+
+/* ---------- 2.5 Flexbox ---------- */
+.caja {
+  background: var(--acento); color: #fff;
+  padding: 1rem; border-radius: .5rem; text-align: center; font-weight: 600;
+}
+.caja:nth-child(even) { background: var(--ambar); color: var(--tinta); }
+
+/* ---------- 2.6 Media queries ---------- */
+.indicador::after { content: "Móvil (menos de 576px)"; font-weight: 700; }
+@media (min-width: 576px) { .indicador::after { content: "Móvil grande (576px o más)"; } }
+@media (min-width: 768px) { .indicador::after { content: "Tablet (768px o más)"; } }
+@media (min-width: 992px) { .indicador::after { content: "Escritorio (992px o más)"; } }
+
+/* ---------- 2.7 Pseudo elementos ---------- */
+.nota::before { content: "Nota: "; font-weight: 700; color: var(--acento); }
+.cita::first-letter { font-size: 2.6rem; float: left; line-height: 1; padding-right: .4rem; color: var(--coral); }
+.cita::selection { background: var(--ambar); }
+.enlace-sub { position: relative; text-decoration: none; color: var(--acento); font-weight: 600; }
+.enlace-sub::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  width: 0; height: 2px; background: var(--coral); transition: width .25s;
+}
+.enlace-sub:hover::after { width: 100%; }
+
+/* ---------- 2.8 Pseudo clases ---------- */
+.lista-pc li:first-child { font-weight: 700; }
+.lista-pc li:last-child { font-style: italic; }
+.lista-pc li:nth-child(odd) { background: #e6f1f0; }
+.lista-pc li:hover { background: var(--ambar); }
+.campo:focus { border-color: var(--acento); box-shadow: 0 0 0 .25rem rgba(11,122,117,.25); }
+/* solo se marcan cuando ya escribiste algo */
+.campo:not(:placeholder-shown):invalid { border-color: #c0392b; }
+.campo:not(:placeholder-shown):valid { border-color: #2e8b57; }
+
+/* ---------- 2.9 z-index ---------- */
+.pila { position: relative; height: 170px; }
+.capa {
+  position: absolute; width: 130px; height: 100px;
+  border-radius: .5rem; color: #fff; padding: .5rem; font-weight: 600;
+}
+.c1 { background: var(--coral); top: 0;    left: 0;    z-index: 1; }
+.c2 { background: var(--acento); top: 30px; left: 50px; z-index: 3; }
+.c3 { background: #5b4bb7; top: 60px; left: 100px; z-index: 2; display: flex; align-items: flex-end; justify-content: flex-end; }
+
+footer { background: var(--tinta); color: #9fb0c8; padding: 1.5rem 0; margin-top: 2rem; }
